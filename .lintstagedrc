@@ -1,0 +1,19 @@
+{
+    "linters": {
+        "src/**/*.js": [
+            "prettier-eslint --write",
+            "eslint --fix",
+            "git add"
+        ],
+        "src/**/*.vue": [
+            "prettier-eslint --write",
+            "eslint --fix",
+            "git add"
+        ]
+    },
+    "ignore": [
+        "**/migrations/**/*.js",
+        "**/node_modules/**/*.js",
+        "**/dist/**/*.js"
+    ]
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "vue": "https://cdn.jsdelivr.net/npm/vue",
+          "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.1.3/dist/vue-router.min.js"
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/import-map-overrides@1.7.2/dist/import-map-overrides.js"></script>
+    <script src="https://static-oss.qutoutiao.net/script/system.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/amd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/named-exports.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/named-register.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/use-default.min.js"></script>
+    <script>
+      Promise.all([
+          window.System.import('vue'),
+          window.System.import('vue-router')
+      ]).then(res => {
+        const Vue = res[0];
+        const VueRouter = res[1];
+        Vue.use(VueRouter);
+      });
+    </script>
+    <title>119统一管理平台</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but test doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278246389'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278246389%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </body>
+</html>
