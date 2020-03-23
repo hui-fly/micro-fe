@@ -3,26 +3,18 @@
  * @LastEditTime: 2019-11-01 14:09:14
  -->
 <template>
-    <div class="header">
-        <!-- 业务线 -->
+    <div class="header" :style="{'background':backgroundColor}">
         <div class="header-left" v-show="!isHome">
             <i class="el-icon-s-unfold" @click="isCollapseMenu(false)" v-show="isCollapse" />
             <i class="el-icon-s-fold" @click="isCollapseMenu(true)" v-show="!isCollapse" />
-        </div>
-        <div class="logo" v-show="isHome">
-            <div class="api-branch" v-if="!isProduct && apiBranch.length > 0">
-                {{ `${apiBranch}${devEVN === 'local' ? '-本地配置' : ''}` }}
-            </div>
-            <div @click="goHome">{{ title }}</div>
         </div>
         <div class="header-right">
             <!-- 用户信息 -->
             <div class="userinfo">
                 <!-- 用户头像 -->
-                <img :src="info.avatar" />
                 <el-dropdown class="user-info" v-if="info.name" @command="goto">
                     <span class="nickname">
-                        {{ info.name + '(' + (info.id || info.userid) + ')' }}
+                        {{ info.name }}
                         <i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
@@ -44,9 +36,7 @@
 </template>
 
 <script>
-import QuRequest from '../core/QuRequest';
 import util from '@/common/js/util';
-const quRequest = new QuRequest();
 export default {
     data () {
         return {
@@ -57,12 +47,7 @@ export default {
             appAlertFlag: false,
             selectFouce: false,
             isCollapse: false,
-            title: quRequest.getProjectTitle(),
-            isProduct: quRequest.isProduct(),
-            /* eslint-disable no-undef */
-            apiBranch: CODE_EVN,
-            devEVN: DEV_EVN
-            /* eslint-enable no-undef */
+            title: PROJECT_TITLE,
         };
     },
     computed: {
@@ -100,6 +85,10 @@ export default {
             if (command === 'fullScreen') {
                 this.handleFullScreen();
             }
+        },
+        logout() {
+            util.setCache('useInfo','')
+            this.$router.push('/login')
         },
         // 全屏事件
         handleFullScreen () {
@@ -216,7 +205,6 @@ export default {
     box-sizing: border-box;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    background: #324057;
     color: #fff;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
     z-index: 1;

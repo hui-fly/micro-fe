@@ -5,30 +5,22 @@
 <template>
     <div class="container">
         <!-- 侧栏 -->
-        <div style="background-color: #324057;" class="aside" :class="{ 'mini-menu': isCollapse }">
+        <div :style="{'background-color': backgroundColor}" class="aside" :class="{ 'mini-menu': isCollapse }">
             <div class="logo-content" @click="goHome">
                 <div class="logo-icon"></div>
-                <transition name="el-fade-in">
-                    <div class="logo" v-show="!isCollapse">
-                        <div class="api-branch" v-if="!isProduct && apiBranch.length > 0">
-                            {{ `${devENV !== 'prd' ? devENV : ''}` }}
-                        </div>
-                        <div>{{ title }}</div>
-                    </div>
-                </transition>
+                <div class="logo-title">{{ title }}</div>
             </div>
             <md-menu class="menu-box" :isCollapse.sync="isCollapse"></md-menu>
         </div>
 
         <section class="right-content">
             <!--头部内容-->
-
             <head-nav @isCollapseMenu="collapse" />
             <!-- 内容区域 -->
             <div class="main">
                 <!--主内容-->
                 <div v-if="$route.path === '/'" class="welcome">
-                    欢迎
+                    欢迎!
                 </div>
                 <section v-else class="content-container">
                     <transition name="fade" mode="out-in">
@@ -45,19 +37,12 @@
 import HeadNav from '@/components/HeadNav';
 import Menu from '@/components/Menu';
 import FooterNav from '@/components/FooterNav';
-import QuRequest from '../core/QuRequest';
-const quRequest = new QuRequest();
 
 export default {
     data () {
         return {
             isCollapse: false,
-            title: quRequest.getProjectTitle(),
-            isProduct: quRequest.isProduct(),
-            /* eslint-disable no-undef */
-            apiBranch: CODE_EVN,
-            devENV: DEV_EVN,
-            /* eslint-enable no-undef */
+            title: PROJECT_TITLE,
             menu: []
         };
     },
@@ -109,7 +94,7 @@ export default {
     }
     .aside {
         width: 240px;
-        background-color: rgb(50, 64, 87);
+        // background-color: rgb(50, 64, 87);
         overflow: auto;
         box-sizing: border-box;
         -ms-flex-negative: 0;
@@ -122,6 +107,18 @@ export default {
             cursor: pointer;
             display: flex;
             align-items: center;
+            .logo-title {
+                font-size: 20px;
+                color: #fff;
+                font-weight: 500;
+                display: inline-block;
+                padding: 0px 20px;
+                line-height: 24px;
+                height: 24px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
         }
     }
     @keyframes minisize {
@@ -136,25 +133,13 @@ export default {
         width: 64px;
         animation: minisize 0.2s 1 linear;
     }
-    .logo {
-        font-size: 22px;
-        color: #fff;
-        font-weight: 500;
-        display: inline-block;
-        padding: 0px 20px;
-        line-height: 24px;
-        width: 100px;
-        height: 24px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
     .logo-icon {
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
         display: inline-block;
         margin-left: 18px;
-        background: url('~@/assets/img/logo.png') no-repeat left top;
+        background: url('~@/assets/img/logo-icon.png') no-repeat left;
+        background-size: 100%;;
     }
     .api-branch {
         position: absolute;
@@ -192,6 +177,16 @@ export default {
         flex: 1;
         -ms-flex-preferred-size: auto;
         flex-basis: auto;
+        // background: url('~@/assets/img/welcome.webp') no-repeat center;
+        // background-size: 80%;
+        .welcome {
+            width: 100%;
+            height: 100%;
+            font-size: 30px;
+            text-align: center;
+            line-height: 90px;
+            background: url('~@/assets/img/logo-icon.webp') no-repeat center;
+        }
         .el-menu {
             height: 100%;
             overflow-y: auto;

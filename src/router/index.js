@@ -1,4 +1,5 @@
 import global from './global';
+import Login from '@/views/Login';
 import Home from '@/views/Home';
 import NotFound from '@/views/404';
 
@@ -9,6 +10,14 @@ export default {
     linkActiveClass: 'is-active',
     scrollBehavior: () => ({ y: 0 }),
     routes: [
+        {
+            path: '/login',
+            component: Login,
+            meta: {
+                label: '登录',
+                hidden: true
+            }
+        },
         {
             path: '/',
             component: Home,

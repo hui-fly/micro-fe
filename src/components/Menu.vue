@@ -9,7 +9,7 @@
             class="el-menu-vertical-demo"
             :collapse="isCollapse"
             :default-openeds="['route0', 'route1', 'route2', 'route3', '4']"
-            background-color="#324057"
+            :background-color="backgroundColor"
             text-color="#ffffff"
             active-text-color="#59abff"
             :router="true"
@@ -95,13 +95,13 @@ export default {
     line-height: 28px;
     margin-right: 11px;
 }
-.back-important {
-    background-color: rgb(40, 51, 70) !important;
-}
-.back-important:hover {
-    background-color: rgb(31, 39, 49) !important;
-}
-.el-submenu/deep/.el-submenu__title:hover {
-    background-color: rgb(31, 39, 49) !important;
-}
+// .back-important {
+//     background-color: rgb(40, 51, 70);
+// }
+// .back-important:hover {
+//     background-color: rgb(31, 39, 49) !important;
+// }
+// .el-submenu/deep/.el-submenu__title:hover {
+//     background-color: rgb(31, 39, 49) !important;
+// }
 </style>

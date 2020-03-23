@@ -8,13 +8,11 @@
 
 <script>
 import moment from 'moment';
-import QuRequest from '../core/QuRequest';
-const quRequest = new QuRequest();
 export default {
     name: 'footerNav',
     data () {
         return {
-            title: quRequest.getProjectTitle(),
+            title: PROJECT_TITLE,
             year: moment().format('YYYY')
         };
     },

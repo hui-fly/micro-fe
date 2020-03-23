@@ -1,10 +1,6 @@
 import axios from 'axios';
-import permApi from '@/core/Apis/Perm';
-import menu from '@/assets/json/menu';
-import QuRequest from '@/core/QuRequest';
 let SIGN_REGEXP = /([yMdhsm])(\1*)/g;
 let DEFAULT_PATTERN = 'yyyy-MM-dd';
-const quRequest = new QuRequest();
 
 function padding (s, len) {
     len = len - (s + '').length;
@@ -107,36 +103,6 @@ export default {
             }
         }
         return args;
-    },
-    async checkPerm () {
-        const businessList = await menu.getBusinessList();
-        this.setCache('businessList', businessList);
-        let permList = [];
-        for (const key in businessList) {
-            if (businessList.hasOwnProperty(key)) {
-                const business = businessList[key];
-                if (business.permission) {
-                    permList.push(`${PROJECT_NAME}::${business.permission}`);
-                }
-            }
-        }
-        return quRequest.send(permApi.member.checkPerm, { project_uri: permList.join(',') }).then(res => {
-            if (!res.code && res.data && res.data.perm) {
-                let permList = res.data.perm;
-                let hasPermList = [];
-                for (const key in permList) {
-                    if (permList.hasOwnProperty(key)) {
-                        const permItem = permList[key];
-                        if (permItem.has === 1) {
-                            hasPermList.push(key);
-                        }
-                    }
-                }
-                this.setCache('userPerm', hasPermList);
-                return hasPermList;
-            }
-            return '';
-        });
     },
     setCache (key, value) {
         value = {

@@ -1,43 +1,34 @@
 <template>
-    <div class="content has-text-centered"></div>
+    <div class="login-form">
+        <el-card>
+            <el-form :data="userInfo">
+                <el-form-item label="用户名">
+                    <el-input v-model="userInfo.name"></el-input>
+                </el-form-item>
+            </el-form>
+            <el-button @click="login">登录</el-button>
+        </el-card>
+        
+    </div>
 </template>
 
 <script>
-import ewxLoginSDK from '@qtt/ewx-login-sdk';
-import QuRequest from '../core/QuRequest';
-const quRequest = new QuRequest();
+import util from "@/common/js/util.js"
 export default {
-    beforeRouteEnter (to, from, next) {
-        const login = () => {
-            // the project author
-            const copyright = {
-                guardian: '唐赟杰',
-                team: {
-                    name: 'FE',
-                    link: 'http://km.qutoutiao.net/pages/viewpage.action?pageId=49189809'
-                },
-                feedback: 'http://km.qutoutiao.net/pages/viewpage.action?pageId=49189809'
-            };
-            ewxLoginSDK.login({
-                project: quRequest.getProject(),
-                url: location.href,
-                qa: !quRequest.isProduct(),
-                copyright: JSON.stringify(copyright)
-            });
-        };
-        ewxLoginSDK.getUserInfo({ isPerm: true }).then(
-            res => {
-                if (!res) {
-                    login();
-                } else {
-                    location.href = '/';
-                }
-            },
-            rej => {
-                login();
-            }
-        );
-    }
+    data(){
+        return {
+            userInfo:{}
+        }
+    },
+    methods:{
+        login() {
+            util.setCache('userInfo',this.userInfo)
+            this.$router.push('/')
+        }
+    },
+    mounted() {
+        
+    },
 };
 </script>
 <style lang="less">

@@ -1,4 +1,3 @@
-/* eslint-enable no-unused-vars */
 import Vue from 'vue';
 import NProgress from 'vue-nprogress';
 import ElementUI from 'element-ui';
@@ -20,12 +19,11 @@ Vue.use(NProgress);
 const nprogress = new NProgress({
     parent: '.nprogress-container'
 });
-
-// 处理同路由跳转报错
-const originalPush = Router.prototype.push;
-Router.prototype.push = function push (location) {
-    return originalPush.call(this, location).catch(err => err);
-};
+Vue.mixin({
+    created: () => {
+        Vue.prototype.backgroundColor = '#456';
+    }
+});
 // 绑定路由
 const router = new Router(routerMap);
 

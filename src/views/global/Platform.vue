@@ -1,5 +1,5 @@
 <template>
-    <div class="frame_wrapper">
+    <div class="frame-container">
         <iframe :src="url" frameborder="0" ref="iframe"></iframe>
     </div>
 </template>
@@ -7,12 +7,9 @@
 <script>
 import util from '@/common/js/util';
 const platformList = util.getCache('platformList');
-console.log(platformList);
 export default {
     data () {
-        return {
-            // url: ""
-        };
+        return {};
     },
     computed: {
         url () {
@@ -27,7 +24,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.frame_wrapper {
+.frame-container {
     width: 100%;
     height: 100%;
     & > iframe {

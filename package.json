@@ -7,9 +7,8 @@
     "build:prd": "cross-env BUILD_ENV=production vue-cli-service build",
     "build:pre": "cross-env BUILD_ENV=preview vue-cli-service build",
     "build:qa": "cross-env BUILD_ENV=development vue-cli-service build",
-    "dev": "cross-env BUILD_ENV=development vue-cli-service serve",
-    "local": "cross-env DEV_EVN=local vue-cli-service serve",
-    "start": "vue-cli-service serve"
+    "dev": "cross-env BUILD_ENV=development vue-cli-service serve --port 5010",
+    "start": "vue-cli-service serve --port 5010"
   },
   "dependencies": {
     "axios": "^0.15.3",
