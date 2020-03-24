@@ -71,7 +71,7 @@ export default {
     },
     methods: {},
     mounted () {
-        setMenu.getCurBaseMenu().then(e => {
+        setMenu.getBusiness().then(e => {
             this.menu = e;
         });
         setMenu.getPlatform().then(e => {

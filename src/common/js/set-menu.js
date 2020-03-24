@@ -3,7 +3,6 @@
  * @LastEditTime: 2019-11-01 18:59:57
  */
 import util from '@/common/js/util';
-import menu from '@/assets/json/menu';
 
 function sortByIdPid (arr) {
     function cmp (a, b) {
@@ -59,23 +58,14 @@ function getTree (arr) {
     return midArr;
 }
 export default {
-    async getCurBaseMenu () {
+    async getBusiness () {
         let businessList = util.getCache('businessList');
-        if (!businessList) {
-            businessList = await menu.getBusinessList();
-            util.setCache('businessList', businessList);
-        }
-        console.log('businessList', businessList);
         let curMenu = [];
         curMenu = getAppMenu(businessList);
         return curMenu;
     },
     async getPlatform () {
         let platformList = util.getCache('platformList');
-        if (!platformList) {
-            platformList = await menu.getBusinessList();
-            util.setCache('platformList', platformList);
-        }
         let list = [];
         for (const key in platformList) {
             if (platformList.hasOwnProperty(key)) {

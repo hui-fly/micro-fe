@@ -6,10 +6,7 @@
 import util from '@/common/js/util';
 import { registerApplication, start, getAppNames, getAppStatus, unloadApplication } from 'single-spa';
 // 业务接入
-const businessList = util.getCache('businessList');
-
 window.BASE_ROUTE = `/${PROJECT_NAME}`;   //子模块路由base
-
 export default {
     data() {
         return {};
@@ -17,6 +14,7 @@ export default {
     methods: {
         registry(key, business) {
             const businessModulePath = business.path;
+            console.log(businessModulePath)
             // 去重
             if (getAppNames().includes(key)) {
                 return;
@@ -27,6 +25,7 @@ export default {
                 () => {
                     const render = () => {
                         // 渲染
+                        console.log('render')
                         return window.System.import(businessModulePath).then(res => {
                             if (res) {
                                 return res;
@@ -38,7 +37,7 @@ export default {
                     return render();
                 },
                 location => {
-                    if (location.pathname.match(`/${PROJECT_NAME}` + business.router)) {
+                    if (location.pathname.indexOf(business.router)!==-1) {
                         return true;
                     } else {
                         return false;
@@ -51,6 +50,7 @@ export default {
         },
         // 注册模块
         async registerApp() {
+            const businessList = util.getCache('businessList');
             for (const key in businessList) {
                 if (businessList.hasOwnProperty(key)) {
                     const business = businessList[key];

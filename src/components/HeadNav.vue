@@ -4,7 +4,7 @@
  -->
 <template>
     <div class="header" :style="{ background: backgroundColor }">
-        <div class="header-left" v-show="!isHome">
+        <div class="header-left">
             <i class="el-icon-s-unfold" @click="isCollapseMenu(false)" v-show="isCollapse" />
             <i class="el-icon-s-fold" @click="isCollapseMenu(true)" v-show="!isCollapse" />
         </div>
@@ -42,7 +42,6 @@ export default {
         return {
             fullscreen: false,
             info: {},
-            selectAppId: '',
             // appList: util.getCache('appList').list,
             appAlertFlag: false,
             selectFouce: false,
@@ -50,20 +49,7 @@ export default {
             title: PROJECT_TITLE
         };
     },
-    computed: {
-        // 比较属性appId这是业务id，接口和鉴权使用
-        appId: {
-            get: function () {
-                return localStorage.getItem('appId');
-            },
-            set: function (newValue) {
-                localStorage.setItem('appId', newValue);
-            }
-        },
-        isHome: function () {
-            return this.$route.name === 'HomePage';
-        }
-    },
+    computed: {},
     methods: {
         isCollapseMenu (val) {
             this.isCollapse = val;
@@ -117,28 +103,6 @@ export default {
             }
             this.fullscreen = !this.fullscreen;
         },
-        // 切换业务线
-        switchApp () {
-            this.appAlertFlag = false;
-            const value = this.selectAppId;
-            if (this.appId) {
-                this.$confirm('切换业务线将刷新页面，会导致当前页面的操作丢失，确定继续吗？', '', {
-                    confirmButtonText: '确认',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                })
-                    .then(() => {
-                        this.appId = value;
-                        this.reload();
-                    })
-                    .catch(() => {
-                        this.selectAppId = parseInt(this.appId) || '';
-                    });
-            } else {
-                this.appId = value;
-                this.reload();
-            }
-        },
         clearLS () {
             this.$confirm('清除缓存后将回到首页，确定继续吗？', '', {
                 confirmButtonText: '确认',
@@ -148,51 +112,13 @@ export default {
                 .then(() => {
                     util.cleanCache();
                     window.location.href = 'http://' + window.location.host;
-                    setTimeout(function () {
-                        // window.reload()
-                    }, 500);
                 })
                 .catch(() => {});
-        },
-        reload () {
-            location.href = '/global/home';
-        },
-        clickItem (item) {
-            let appId = (item && item.appId) || '';
-            if (this.selectAppId !== appId) {
-                this.selectAppId = appId;
-                this.switchApp();
-            }
-            this.selectFouce = false;
-        },
-        selectClick () {
-            this.selectFouce = !this.selectFouce;
-            if (this.selectFouce) {
-                document.addEventListener('click', this.clickOtherPlace);
-            }
-        },
-        clickOtherPlace (event) {
-            if (!this.$refs.selectBox.contains(event.target)) {
-                this.selectFouce = false;
-                document.removeEventListener('click', this.clickOtherPlace);
-            }
         },
         goHome () {
             this.$router.push('/');
         }
     },
-    mounted () {
-        this.getMemberInfo();
-        // 业务线选项
-        this.selectAppId = parseInt(this.selectAppId || this.appId) || '';
-        // 业务线选择提示框响应
-        this.$bus.$on('alertSelectApp', () => {
-            if (!this.appAlertFlag) {
-                this.appAlertFlag = true;
-                this.selectFouce = true;
-            }
-        });
-    }
 };
 </script>
 

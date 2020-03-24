@@ -13,7 +13,7 @@ export default {
     children: [
         {
             name: 'GlobalNavigation',
-            path: `${PROJECT_NAME}*`,
+            path: `/${PROJECT_NAME}*`,
             component: GlobalNavigation, // 加载模块
             meta: {
                 label: '平台',

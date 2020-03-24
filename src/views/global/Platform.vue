@@ -6,20 +6,20 @@
 
 <script>
 import util from '@/common/js/util';
-const platformList = util.getCache('platformList');
 export default {
     data () {
         return {};
     },
     computed: {
         url () {
+            const platformList = util.getCache('platformList');
             const platformInfo = platformList[this.$route.params.key];
             if (platformInfo && platformInfo.url) {
                 return platformInfo.url;
             }
             return '';
         }
-    }
+    },
 };
 </script>
 

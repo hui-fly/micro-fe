@@ -125,6 +125,7 @@ export default {
         window.localStorage.removeItem(key);
     },
     cleanCache () {
+        window.localStorage.clear();
         const config = {
             method: 'get',
             baseURL: 'http://' + window.location.host,
@@ -137,25 +138,5 @@ export default {
         };
         const instance = axios.create(config);
         Promise.all([instance.get('')])
-            .then(res => {
-                window.localStorage.clear();
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    },
-    sendEwx (email, msg) {
-        const config = {
-            method: 'get',
-            baseURL: 'http://oam.qutoutiao.net'
-        };
-        const instance = axios.create(config);
-        instance({
-            url: '/api/sendEWX',
-            params: {
-                email,
-                msg
-            }
-        });
     }
 };
