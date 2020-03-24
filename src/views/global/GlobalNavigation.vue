@@ -7,21 +7,8 @@ import util from '@/common/js/util';
 import { registerApplication, start, getAppNames, getAppStatus, unloadApplication } from 'single-spa';
 // 业务接入
 const businessList = util.getCache('businessList');
-// 绑定获取根路径方法
-window.getPublicPath = name => {
-    if (businessList[name] && businessList[name].path) {
-        const business = businessList[name];
-        const url = business.path;
-        let index = url.lastIndexOf('/js');
-        if (index < 0) {
-            index = url.lastIndexOf('/');
-        }
-        return url.slice(0, index + 1);
-    } else {
-        throw Error(`Could not find url for module '${name}'`);
-    }
-};
-window.BASE_ROUTE = `/${PROJECT_NAME}`;
+
+window.BASE_ROUTE = `/${PROJECT_NAME}`;   //子模块路由base
 
 export default {
     data() {
@@ -30,11 +17,6 @@ export default {
     methods: {
         registry(key, business) {
             const businessModulePath = business.path;
-            // 植入渲染入口
-            if (!this.createDomEntry('#MICRO-APP', key)) {
-                console.error('创建渲染入口失败: ' + key);
-                throw new Error('createDomEntry failed');
-            }
             // 去重
             if (getAppNames().includes(key)) {
                 return;
@@ -56,20 +38,14 @@ export default {
                     return render();
                 },
                 location => {
-                    if (location.pathname.match(window.BASE_ROUTE + business.router)) {
-                        document.getElementById(key).style.display = 'block';
+                    if (location.pathname.match(`/${PROJECT_NAME}` + business.router)) {
                         return true;
                     } else {
-                        let el = document.getElementById(key);
-                        if (el) {
-                            document.getElementById(key).style.display = 'none';
-                        }
                         return false;
                     }
-                    // return location.pathname.match(window.BASE_ROUTE + business.router)
                 },
                 {
-                    domElement: `#${key}`
+                    domElement: `#MICRO-APP`
                 }
             );
         },
@@ -82,18 +58,6 @@ export default {
                 }
             }
         },
-        createDomEntry(rootEl, id) {
-            let root = document.querySelector(rootEl);
-            // 存根
-            if (!root) {
-                root = document.body;
-                return false;
-            }
-            const entryEl = document.createElement('div');
-            entryEl.id = id;
-            root.append(entryEl);
-            return true;
-        }
     },
     async mounted() {
         await start();

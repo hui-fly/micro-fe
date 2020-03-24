@@ -3,7 +3,7 @@
  * @LastEditTime: 2019-11-01 14:09:14
  -->
 <template>
-    <div class="header" :style="{'background':backgroundColor}">
+    <div class="header" :style="{ background: backgroundColor }">
         <div class="header-left" v-show="!isHome">
             <i class="el-icon-s-unfold" @click="isCollapseMenu(false)" v-show="isCollapse" />
             <i class="el-icon-s-fold" @click="isCollapseMenu(true)" v-show="!isCollapse" />
@@ -47,7 +47,7 @@ export default {
             appAlertFlag: false,
             selectFouce: false,
             isCollapse: false,
-            title: PROJECT_TITLE,
+            title: PROJECT_TITLE
         };
     },
     computed: {
@@ -86,9 +86,9 @@ export default {
                 this.handleFullScreen();
             }
         },
-        logout() {
-            util.setCache('useInfo','')
-            this.$router.push('/login')
+        logout () {
+            util.setCache('useInfo', '');
+            this.$router.push('/login');
         },
         // 全屏事件
         handleFullScreen () {
@@ -147,8 +147,9 @@ export default {
             })
                 .then(() => {
                     util.cleanCache();
+                    window.location.href = 'http://' + window.location.host;
                     setTimeout(function () {
-                        window.location.href = 'http://' + window.location.host;
+                        // window.reload()
                     }, 500);
                 })
                 .catch(() => {});

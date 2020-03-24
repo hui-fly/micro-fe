@@ -71,7 +71,7 @@ export default {
         return curMenu;
     },
     async getPlatform () {
-        const platformList = util.getCache('platformList');
+        let platformList = util.getCache('platformList');
         if (!platformList) {
             platformList = await menu.getBusinessList();
             util.setCache('platformList', platformList);

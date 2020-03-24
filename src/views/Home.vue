@@ -5,7 +5,7 @@
 <template>
     <div class="container">
         <!-- 侧栏 -->
-        <div :style="{'background-color': backgroundColor}" class="aside" :class="{ 'mini-menu': isCollapse }">
+        <div :style="{ 'background-color': backgroundColor }" class="aside" :class="{ 'mini-menu': isCollapse }">
             <div class="logo-content" @click="goHome">
                 <div class="logo-icon"></div>
                 <div class="logo-title">{{ title }}</div>
@@ -139,7 +139,7 @@ export default {
         display: inline-block;
         margin-left: 18px;
         background: url('~@/assets/img/logo-icon.png') no-repeat left;
-        background-size: 100%;;
+        background-size: 100%;
     }
     .api-branch {
         position: absolute;

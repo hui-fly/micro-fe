@@ -19,7 +19,7 @@
                     <i :class="icon[index]" class="menu-title"></i>
                     <span>{{ item.name }}</span>
                 </template>
-                <el-menu-item v-for="(child, i) in item.children" :index="child.url" :key="i" class="back-important">
+                <el-menu-item v-for="(child, i) in item.children" :index="child.url" :key="i">
                     {{ child.name }}
                 </el-menu-item>
             </el-submenu>
@@ -32,7 +32,6 @@
                     v-for="(item, index) in platformMenu"
                     :index="item.path"
                     :key="index"
-                    class="back-important"
                     >{{ item.name }}</el-menu-item
                 >
             </el-submenu>
@@ -95,13 +94,4 @@ export default {
     line-height: 28px;
     margin-right: 11px;
 }
-// .back-important {
-//     background-color: rgb(40, 51, 70);
-// }
-// .back-important:hover {
-//     background-color: rgb(31, 39, 49) !important;
-// }
-// .el-submenu/deep/.el-submenu__title:hover {
-//     background-color: rgb(31, 39, 49) !important;
-// }
 </style>

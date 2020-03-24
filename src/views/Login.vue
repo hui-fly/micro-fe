@@ -8,27 +8,24 @@
             </el-form>
             <el-button @click="login">登录</el-button>
         </el-card>
-        
     </div>
 </template>
 
 <script>
-import util from "@/common/js/util.js"
+import util from '@/common/js/util.js';
 export default {
-    data(){
+    data () {
         return {
-            userInfo:{}
+            userInfo: {}
+        };
+    },
+    methods: {
+        login () {
+            util.setCache('userInfo', this.userInfo);
+            this.$router.push('/');
         }
     },
-    methods:{
-        login() {
-            util.setCache('userInfo',this.userInfo)
-            this.$router.push('/')
-        }
-    },
-    mounted() {
-        
-    },
+    mounted () {}
 };
 </script>
 <style lang="less">
