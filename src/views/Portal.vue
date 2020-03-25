@@ -1,5 +1,5 @@
 <template>
-    <div></div>
+    <div id="MICRO-APP"></div>
 </template>
 <script>
 /* eslint-disable */
@@ -25,6 +25,7 @@ export default {
                         // 渲染
                         return window.System.import(app.path).then(res => {
                             if (res) {
+                                console.log(res)
                                 return res;
                             } else {
                                 return render();

@@ -19,10 +19,10 @@
             <!-- 内容区域 -->
             <div class="main">
                 <!--主内容-->
-                <!-- <div v-if="$route.path === '/'||$route.path === `/${projectName}`" class="welcome">
+                <div v-if="$route.path === '/'||$route.path === `/${projectName}`" class="welcome">
                     欢迎!
-                </div> -->
-                <section class="content-container" id="MICRO-APP">
+                </div>
+                <section v-else class="content-container">
                     <transition name="fade" mode="out-in">
                         <router-view></router-view>
                     </transition>
