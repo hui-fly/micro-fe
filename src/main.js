@@ -6,7 +6,7 @@ import Router from 'vue-router';
 import routerMap from './router/index';
 import App from './App';
 import moduleConfig from '@/assets/js/index.js';
-import util from '@/common/js/util'
+import util from '@/common/js/util';
 const eventBus = {
     install (Vue, options) {
         const vue = new Vue();
@@ -17,7 +17,6 @@ Vue.use(eventBus);
 Vue.use(ElementUI);
 Vue.use(Router);
 Vue.use(NProgress);
-Vue.prototype.aaa=1
 
 const nprogress = new NProgress({
     parent: '.nprogress-container'
@@ -30,16 +29,18 @@ Vue.mixin({
 // 绑定路由
 const router = new Router(routerMap);
 
-//获取子项目的配置
+// 获取子项目的配置
 
-Promise.all([moduleConfig.getBusinessList(),moduleConfig.getPlatformList()]).then((res)=>{
-    util.setCache('businessList', res[0]);
-    util.setCache('platformList', res[1]);
-    new Vue({
-        router,
-        nprogress,
-        render: h => h(App)
-    }).$mount('#app');
-}).catch((e)=>{
-    console.log(e,'获取配置失败')
-})
+Promise.all([moduleConfig.getAppList(), moduleConfig.getPlatformList()])
+    .then(res => {
+        util.setCache('appList', res[0]);
+        util.setCache('platformList', res[1]);                        
+        new Vue({
+            router,
+            nprogress,
+            render: h => h(App)
+        }).$mount('#app'); 
+    })
+    .catch(e => {
+        console.log(e, '获取配置失败');
+    });

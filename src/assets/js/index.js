@@ -1,4 +1,4 @@
-import businessList from './business';
+import appList from './appList';
 import platformList from './platform';
 
 const getMenuList = type => {
@@ -7,14 +7,14 @@ const getMenuList = type => {
     case 'platform':
         list = platformList;
         break;
-    case 'business':
-        list = businessList;
+    case 'app':
+        list = appList;
         break;
     }
     return list;
 };
 
 export default {
-    getBusinessList: async () => getMenuList('business'),
+    getAppList: async () => getMenuList('app'),
     getPlatformList: async () => getMenuList('platform')
 };

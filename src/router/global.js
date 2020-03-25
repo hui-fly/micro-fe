@@ -1,33 +1,22 @@
 import Home from '@/views/Home';
-import GlobalNavigation from '@/views/global/GlobalNavigation';
-import Platform from '@/views/global/Platform';
+import Portal from '@/views/Portal';
+import Platform from '@/views/Platform';
 
-export default {
-    path: '/',
-    meta: {
-        icon: 'el-icon-s-grid',
-        label: '公共模块',
-        hidden: true
-    },
-    component: Home,
-    children: [
-        {
-            name: 'GlobalNavigation',
-            path: `/${PROJECT_NAME}*`,
-            component: GlobalNavigation, // 加载模块
-            meta: {
-                label: '平台',
-                hidden: true,
-                api: []
+export default [
+    {
+        path: '/',
+        redirect: `/${PROJECT_NAME}`,
+        component: Home,
+        children: [
+            {
+                name: 'Portal',
+                path: `/${PROJECT_NAME}*`,
+                component: Portal, // 加载模块
+            },
+            {
+                path: 'platform/:key',
+                component: Platform,
             }
-        },
-        {
-            path: 'platform/:key',
-            component: Platform,
-            meta: {
-                label: '平台',
-                hidden: false
-            }
-        }
-    ]
-};
+        ]
+    }
+]

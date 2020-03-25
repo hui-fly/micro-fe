@@ -20,7 +20,7 @@
                     <span>{{ item.name }}</span>
                 </template>
                 <el-menu-item v-for="(child, i) in item.children" :index="child.url" :key="i">
-                    {{ child.name }}
+                    {{ child.name }}{{child.url}}
                 </el-menu-item>
             </el-submenu>
             <el-submenu index="4">
@@ -28,12 +28,9 @@
                     <i class="menu-title el-icon-coin"></i>
                     <span>其他</span>
                 </template>
-                <el-menu-item
-                    v-for="(item, index) in platformMenu"
-                    :index="item.path"
-                    :key="index"
-                    >{{ item.name }}</el-menu-item
-                >
+                <el-menu-item v-for="(item, index) in platformMenu" :index="item.path" :key="index">{{
+                    item.name
+                }}</el-menu-item>
             </el-submenu>
         </el-menu>
     </div>
@@ -71,7 +68,7 @@ export default {
     },
     methods: {},
     mounted () {
-        setMenu.getBusiness().then(e => {
+        setMenu.getApp().then(e => {
             this.menu = e;
         });
         setMenu.getPlatform().then(e => {

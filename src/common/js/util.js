@@ -137,6 +137,6 @@ export default {
             timeout: 10000
         };
         const instance = axios.create(config);
-        Promise.all([instance.get('')])
+        Promise.all([instance.get('')]);
     }
 };

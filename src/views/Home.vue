@@ -19,10 +19,10 @@
             <!-- 内容区域 -->
             <div class="main">
                 <!--主内容-->
-                <div v-if="$route.path === '/'" class="welcome">
+                <!-- <div v-if="$route.path === '/'||$route.path === `/${projectName}`" class="welcome">
                     欢迎!
-                </div>
-                <section v-else class="content-container">
+                </div> -->
+                <section class="content-container" id="MICRO-APP">
                     <transition name="fade" mode="out-in">
                         <router-view></router-view>
                     </transition>
@@ -43,7 +43,8 @@ export default {
         return {
             isCollapse: false,
             title: PROJECT_TITLE,
-            menu: []
+            menu: [],
+            projectName:PROJECT_NAME
         };
     },
     computed: {},

@@ -1,20 +1,18 @@
 <template>
-    <div id="MICRO-APP"></div>
+    <div></div>
 </template>
 <script>
 /* eslint-disable */
 import util from '@/common/js/util';
 import { registerApplication, start, getAppNames, getAppStatus, unloadApplication } from 'single-spa';
 // 业务接入
-window.BASE_ROUTE = `/${PROJECT_NAME}`;   //子模块路由base
+window.BASE_ROUTE = `/${PROJECT_NAME}`; //子模块路由base
 export default {
     data() {
         return {};
     },
     methods: {
-        registry(key, business) {
-            const businessModulePath = business.path;
-            console.log(businessModulePath)
+        registry(key, app) {
             // 去重
             if (getAppNames().includes(key)) {
                 return;
@@ -25,8 +23,7 @@ export default {
                 () => {
                     const render = () => {
                         // 渲染
-                        console.log('render')
-                        return window.System.import(businessModulePath).then(res => {
+                        return window.System.import(app.path).then(res => {
                             if (res) {
                                 return res;
                             } else {
@@ -37,27 +34,24 @@ export default {
                     return render();
                 },
                 location => {
-                    if (location.pathname.indexOf(business.router)!==-1) {
+                    if (location.pathname.indexOf(app.router) !== -1) {
                         return true;
                     } else {
                         return false;
                     }
-                },
-                {
-                    domElement: `#MICRO-APP`
                 }
             );
         },
         // 注册模块
         async registerApp() {
-            const businessList = util.getCache('businessList');
-            for (const key in businessList) {
-                if (businessList.hasOwnProperty(key)) {
-                    const business = businessList[key];
-                    this.registry(key, business);
+            const appList = util.getCache('appList');
+            for (const key in appList) {
+                if (appList.hasOwnProperty(key)) {
+                    const app = appList[key];
+                    this.registry(key, app);
                 }
             }
-        },
+        }
     },
     async mounted() {
         await start();

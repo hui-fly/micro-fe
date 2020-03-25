@@ -58,10 +58,10 @@ function getTree (arr) {
     return midArr;
 }
 export default {
-    async getBusiness () {
-        let businessList = util.getCache('businessList');
+    async getApp () {
+        let appList = util.getCache('appList');
         let curMenu = [];
-        curMenu = getAppMenu(businessList);
+        curMenu = getAppMenu(appList);
         return curMenu;
     },
     async getPlatform () {
