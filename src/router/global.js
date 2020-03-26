@@ -14,6 +14,7 @@ export default [
                 component: Portal, // 加载模块
             },
             {
+                name:'Platform',
                 path: 'platform/:key',
                 component: Platform,
             }
