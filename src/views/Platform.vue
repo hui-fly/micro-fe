@@ -20,9 +20,11 @@ export default {
             return '';
         }
     },
-    mounted() {
-        console.log(123)
-    },
+    mounted () {
+        if (!document.querySelector('.frame-container')) {
+            location.reload();
+        }
+    }
 };
 </script>
 
