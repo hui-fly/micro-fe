@@ -22,7 +22,7 @@
                 <div v-if="$route.path === '/'||$route.path === `/${projectName}`" class="welcome">
                     欢迎!
                 </div>
-                <section v-else class="content-container">
+                <section v-else class="content-container" id="MICRO-APP">
                     <transition name="fade" mode="out-in">
                         <router-view></router-view>
                     </transition>

@@ -19,7 +19,10 @@ export default {
             }
             return '';
         }
-    }
+    },
+    mounted() {
+        console.log(123)
+    },
 };
 </script>
 
