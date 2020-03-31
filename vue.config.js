@@ -2,6 +2,7 @@ let webpack = require('webpack')
 let devConfig = require('./config/devConfig')
 let codeEnv = process.env.BUILD_ENV || 'development'
 module.exports = {
+    publicPath: "/micro-fe",
     configureWebpack: config => {
         // 环境变量赋值
         if (devConfig[codeEnv]) {
