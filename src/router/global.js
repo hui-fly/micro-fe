@@ -4,20 +4,20 @@ import Platform from '@/views/Platform';
 
 export default [
     {
-        path: '/',
+        path: `${ROOT}`,
         redirect: `/${PROJECT_NAME}`,
         component: Home,
         children: [
             {
                 name: 'Portal',
                 path: `/${PROJECT_NAME}*`,
-                component: Portal, // 加载模块
+                component: Portal // 加载模块
             },
             {
-                name:'Platform',
+                name: 'Platform',
                 path: 'platform/:key',
-                component: Platform,
+                component: Platform
             }
         ]
     }
-]
+];
