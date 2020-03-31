@@ -104,19 +104,16 @@ export default {
             this.fullscreen = !this.fullscreen;
         },
         clearLS () {
-            this.$confirm('清除缓存后将回到首页，确定继续吗？', '', {
+            this.$confirm('清除缓存后将刷新页面，确定继续吗？', '', {
                 confirmButtonText: '确认',
                 cancelButtonText: '取消',
                 type: 'warning'
             })
                 .then(() => {
                     util.cleanCache();
-                    window.location.href = 'http://' + window.location.host;
+                    window.location.reload()
                 })
                 .catch(() => {});
-        },
-        goHome () {
-            this.$router.push('/');
         }
     }
 };

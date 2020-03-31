@@ -57,7 +57,7 @@ export default {
             }
         },
         goHome () {
-            this.$router.push('/');
+            this.$router.push(`/${PROJECT_NAME}`);
         }
     },
     components: {

@@ -21,6 +21,11 @@ Vue.use(NProgress);
 const nprogress = new NProgress({
     parent: '.nprogress-container'
 });
+// 处理同路由跳转报错
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push (location) {
+    return originalPush.call(this, location).catch(err => err);
+};
 Vue.mixin({
     created: () => {
         Vue.prototype.backgroundColor = '#456';
@@ -34,12 +39,12 @@ const router = new Router(routerMap);
 Promise.all([moduleConfig.getAppList(), moduleConfig.getPlatformList()])
     .then(res => {
         util.setCache('appList', res[0]);
-        util.setCache('platformList', res[1]);                        
+        util.setCache('platformList', res[1]);
         new Vue({
             router,
             nprogress,
             render: h => h(App)
-        }).$mount('#app'); 
+        }).$mount('#app');
     })
     .catch(e => {
         console.log(e, '获取配置失败');
