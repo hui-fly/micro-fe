@@ -1,15 +1,15 @@
 export default {
-    test: {
-        id: 1,
-        parent: {
-            id: 1,
-            name: 'test管理'
-        },
-        name: 'test模块',
-        path: 'http://10.104.32.104:3001/app.js',
-        permission: '/testPerm',
-        router: '/test'
-    },
+    // test: {
+    //     id: 1,
+    //     parent: {
+    //         id: 1,
+    //         name: 'test管理'
+    //     },
+    //     name: 'test模块',
+    //     path: 'http://10.104.32.104:3001/app.js',
+    //     permission: '/testPerm',
+    //     router: '/test'
+    // },
     demo: {
         id: 0,
         parent: {
