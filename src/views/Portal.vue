@@ -6,7 +6,7 @@
 import util from '@/common/js/util';
 import { registerApplication, start, getAppNames, getAppStatus, unloadApplication } from 'single-spa';
 // 业务接入
-window.BASE_ROUTE = `/${PROJECT_NAME}`; //子模块路由base
+window.BASE_ROUTE = `${ROOT}${PROJECT_NAME}`; //子模块路由base
 export default {
     data() {
         return {};
@@ -52,16 +52,16 @@ export default {
                 }
             }
             window.getPublicPath = name => {
-                let publicPath
-                appList.forEach(item=>{
-                    item.key===name?publicPath=item.path:''
-                })
+                let publicPath;
+                appList.forEach(item => {
+                    item.key === name ? (publicPath = item.path) : '';
+                });
                 if (publicPath) {
-                    let index = publicPath.lastIndexOf("/js");
+                    let index = publicPath.lastIndexOf('/js');
                     if (index < 0) {
-                        index = publicPath.lastIndexOf("/");
+                        index = publicPath.lastIndexOf('/');
                     }
-                    return publicPath.slice(0, index+1);
+                    return publicPath.slice(0, index + 1);
                 } else {
                     throw Error(`Could not find url for module '${name}'`);
                 }

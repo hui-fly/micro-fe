@@ -19,8 +19,8 @@
                     <i :class="icon[index]" class="menu-title"></i>
                     <span>{{ item.name }}</span>
                 </template>
-                <el-menu-item v-for="(child, i) in item.children" :index="child.url" :key="i">
-                    {{ child.name }}{{child.url}}
+                <el-menu-item v-for="(child, i) in item.children" :index="child.router" :key="i">
+                    {{ child.name }}
                 </el-menu-item>
             </el-submenu>
             <el-submenu index="4">
@@ -28,9 +28,9 @@
                     <i class="menu-title el-icon-coin"></i>
                     <span>其他</span>
                 </template>
-                <el-menu-item v-for="(item, index) in platformMenu" :index="item.path" :key="index">{{
-                    item.name
-                }}</el-menu-item>
+                <el-menu-item v-for="(item, index) in platformMenu" :index="item.router" :key="index">
+                    {{ item.name }}</el-menu-item
+                >
             </el-submenu>
         </el-menu>
     </div>

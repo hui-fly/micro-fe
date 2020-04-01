@@ -24,7 +24,7 @@ async function getAppMenu (pure) {
         for (let key of dict) {
             const node = pure[key];
             // 首页菜单默认显示有权限状态
-            node.url = `/${PROJECT_NAME}${node.router}`;
+            node.router = `/${PROJECT_NAME}${node.router}`;
             nodes.push(node);
         }
         // sort
@@ -71,8 +71,8 @@ export default {
             if (platformList.hasOwnProperty(key)) {
                 const platform = platformList[key];
                 list.push({
-                    path: `/platform/${key}`,
-                    ...platform
+                    ...platform,
+                    router: `/platform${platform.router}`
                 });
             }
         }

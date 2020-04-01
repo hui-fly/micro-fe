@@ -1,7 +1,7 @@
 let webpack = require('webpack')
 let devConfig = require('./config/devConfig')
 let codeEnv = process.env.BUILD_ENV || 'development'
-const publicPath = codeEnv==="development"?'':"/micro-fe"
+const publicPath = codeEnv==="development"?'/':"/micro-fe/"
 module.exports = {
     publicPath:publicPath,
     configureWebpack: config => {

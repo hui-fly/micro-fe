@@ -4,7 +4,7 @@ import Platform from '@/views/Platform';
 
 export default [
     {
-        path: `${ROOT}`,
+        path: `/`,
         redirect: `/${PROJECT_NAME}`,
         component: Home,
         children: [
