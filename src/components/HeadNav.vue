@@ -111,7 +111,7 @@ export default {
             })
                 .then(() => {
                     util.cleanCache();
-                    window.location.reload()
+                    window.location.reload();
                 })
                 .catch(() => {});
         }

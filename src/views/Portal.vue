@@ -51,6 +51,21 @@ export default {
                     this.registry(key, app);
                 }
             }
+            window.getPublicPath = name => {
+                let publicPath
+                appList.forEach(item=>{
+                    item.key===name?publicPath=item.path:''
+                })
+                if (publicPath) {
+                    let index = publicPath.lastIndexOf("/js");
+                    if (index < 0) {
+                        index = publicPath.lastIndexOf("/");
+                    }
+                    return publicPath.slice(0, index+1);
+                } else {
+                    throw Error(`Could not find url for module '${name}'`);
+                }
+            };
         }
     },
     async mounted() {

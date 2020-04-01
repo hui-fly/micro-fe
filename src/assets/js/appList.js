@@ -17,7 +17,7 @@ export default {
             name: 'demo管理'
         },
         name: 'demo模块',
-        path: 'http://10.104.32.104:3000/app.js',
+        path: 'https://hui-fly.github.io/micro-module-demo/js/app.js',
         permission: '/demoPerm',
         router: '/demo'
     }
