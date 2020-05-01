@@ -5,12 +5,11 @@ import Platform from '@/views/Platform';
 export default [
     {
         path: `/`,
-        redirect: `/${PROJECT_NAME}`,
         component: Home,
         children: [
             {
                 name: 'Portal',
-                path: `/${PROJECT_NAME}*`,
+                path: `/*`,
                 component: Portal // 加载模块
             },
             {

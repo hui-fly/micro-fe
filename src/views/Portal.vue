@@ -6,7 +6,7 @@
 import util from '@/common/js/util';
 import { registerApplication, start, getAppNames, getAppStatus, unloadApplication } from 'single-spa';
 // 业务接入
-window.BASE_ROUTE = `${ROOT}${PROJECT_NAME}`; //子模块路由base
+window.BASE_ROUTE = `${ROOT}`; //子模块路由base
 export default {
     data() {
         return {};
@@ -24,6 +24,7 @@ export default {
                     const render = () => {
                         // 渲染
                         return window.System.import(app.path).then(res => {
+                            console.log(res);
                             if (res) {
                                 return res;
                             } else {
@@ -34,7 +35,8 @@ export default {
                     return render();
                 },
                 location => {
-                    if (location.pathname.indexOf(app.router) !== -1) {
+                    if (location.hash.indexOf(app.router) !== -1) {
+                        console.log(1);
                         return true;
                     } else {
                         return false;
