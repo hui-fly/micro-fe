@@ -4,8 +4,8 @@
  */
 import util from '@/common/js/util';
 
-function sortByIdPid(arr) {
-    function cmp(a, b) {
+function sortByIdPid (arr) {
+    function cmp (a, b) {
         return a.parent.id - b.parent.id;
     }
     try {
@@ -16,7 +16,7 @@ function sortByIdPid(arr) {
         window.location.reload();
     }
 }
-async function getAppMenu(pure) {
+async function getAppMenu (pure) {
     const dict = Object.keys(pure);
     const getIndexArr = function () {
         let nodes = [];
@@ -32,7 +32,7 @@ async function getAppMenu(pure) {
     const arr = getIndexArr();
     return getTree(arr);
 }
-function getTree(arr) {
+function getTree (arr) {
     let midObj = {};
     let midArr = [];
     // 从后向前遍历
@@ -57,13 +57,13 @@ function getTree(arr) {
     return midArr;
 }
 export default {
-    async getApp() {
+    async getApp () {
         let appList = util.getCache('appList');
         let curMenu = [];
         curMenu = getAppMenu(appList);
         return curMenu;
     },
-    async getPlatform() {
+    async getPlatform () {
         let platformList = util.getCache('platformList');
         let list = [];
         for (const key in platformList) {
