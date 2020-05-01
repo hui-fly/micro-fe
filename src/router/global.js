@@ -8,14 +8,14 @@ export default [
         component: Home,
         children: [
             {
-                name: 'Portal',
-                path: `/*`,
-                component: Portal // 加载模块
+                name: 'Platform', // iframe
+                path: '/platform/:key',
+                component: Platform
             },
             {
-                name: 'Platform',
-                path: 'platform/:key',
-                component: Platform
+                name: 'Portal', // 带*的要放在后边
+                path: `/*`,
+                component: Portal // 加载模块
             }
         ]
     }

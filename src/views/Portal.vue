@@ -24,7 +24,6 @@ export default {
                     const render = () => {
                         // 渲染
                         return window.System.import(app.path).then(res => {
-                            console.log(res);
                             if (res) {
                                 return res;
                             } else {
@@ -36,7 +35,6 @@ export default {
                 },
                 location => {
                     if (location.hash.indexOf(app.router) !== -1) {
-                        console.log(1);
                         return true;
                     } else {
                         return false;
