@@ -3,7 +3,7 @@ let devConfig = require('./config/devConfig')
 let codeEnv = process.env.BUILD_ENV || 'development'
 const publicPath = codeEnv === "development" ? '/' : "/micro-fe/"
 module.exports = {
-    // publicPath:publicPath,
+    publicPath: publicPath,
     configureWebpack: config => {
         // 环境变量赋值
         config.plugins.push(new webpack.DefinePlugin({

@@ -22,7 +22,7 @@ export default {
                 key,
                 () => {
                     const render = () => {
-                        // 渲染
+                        // 渲染，只执行一次
                         return window.System.import(app.path).then(res => {
                             if (res) {
                                 return res;
@@ -34,6 +34,7 @@ export default {
                     return render();
                 },
                 location => {
+                    //location发生变化即执行
                     if (location.hash.indexOf(app.router) !== -1) {
                         return true;
                     } else {
