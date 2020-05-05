@@ -4,22 +4,22 @@ export default {
     // base: window.BASE_ROUTE || '/',
     routes: [
         {
-            path: '/demo', // 这个path与主项目中配置的router一致
-            redirect: '/demo/list',
+            path: '/react', // 这个path与主项目中配置的router一致
+            redirect: '/react/list',
             component: List
         },
         {
-            path: '/demo/list',
+            path: '/react/list',
             component: List,
             name: 'List'
         },
         {
-            path: '/test', // 这个path与主项目中配置的router一致
-            redirect: '/test/list',
+            path: '/vue', // 这个path与主项目中配置的router一致
+            redirect: '/vue/list',
             component: List
         },
         {
-            path: '/test/list',
+            path: '/vue/list',
             component: List,
             name: 'List'
         }
