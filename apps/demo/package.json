@@ -1,0 +1,50 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "vue-cli-service lint",
+    "build:prd": "cross-env BUILD_ENV=production vue-cli-service build",
+    "build:pre": "cross-env BUILD_ENV=preview vue-cli-service build",
+    "build:qa": "cross-env BUILD_ENV=development vue-cli-service build",
+    "dev": "cross-env BUILD_HOT=1 vue-cli-service serve --port 3001",
+    "start": "vue-cli-service serve --port 3000"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "element-ui": "^2.0.0",
+    "js-cookie": "^2.2.1",
+    "q": "^1.5.0",
+    "qs": "^6.5.1",
+    "single-spa-vue": "^1.5.4",
+    "vue": "^2.5.22",
+    "vue-cli": "^2.9.6",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "autoprefixer": "^6.7.2",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^5.0.5",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "lint-staged": "^8.1.4",
+    "prettier": "^1.14.2",
+    "prettier-eslint-cli": "^4.7.1",
+    "request": "^2.88.0",
+    "vue-cli-plugin-single-spa": "^1.0.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "gitHooks": {
+    "commit-msg": "commitlint -E GIT_PARAMS",
+    "pre-commit": "lint-staged"
+  }
+}
