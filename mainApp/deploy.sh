@@ -17,3 +17,28 @@ git commit -m 'deploy'
 git push -f git@github.com:hui-fly/micro-fe.git master:gh-pages
 
 cd -
+
+
+# demo文件夹部署
+npm run build:prd
+cd ../apps/demo/dist
+
+git init
+git add -A
+git commit -m 'deploy'
+
+git push -f git@github.com:hui-fly/micro-module-demo.git master:gh-pages
+
+cd -
+
+#react-demo
+npm run build
+cd ../apps/react-demo/dist
+
+git init
+git add -A
+git commit -m 'deploy'
+
+git push -f git@github.com:hui-fly/micro-react-demo.git master:gh-pages
+
+cd -
