@@ -91,6 +91,9 @@ module.exports = function(proxy, allowedHost) {
       ignored: ignoredFiles(paths.appSrc),
     },
     https: getHttpsConfig(),
+    headers:{
+        'Access-Control-Allow-Origin':'*',
+    },
     host,
     overlay: false,
     historyApiFallback: {
