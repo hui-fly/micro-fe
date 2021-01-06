@@ -11,7 +11,7 @@
     "start": "cross-env BUILD_ENV=production vue-cli-service serve --port 5010"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "element-ui": "^2.0.0",
     "js-cookie": "^2.1.4",
     "pinyin": "^2.9.0",
